@@ -2,10 +2,11 @@
 source "https://rubygems.org"
 
 # declare the sinatra dependency
-gem "sinatra"
+gem 'sinatra'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'database_cleaner'
+gem 'capybara'
 
 # setup our test group and require rspec
 group :test do
