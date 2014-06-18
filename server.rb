@@ -1,3 +1,4 @@
+require 'sinatra'
 require 'data_mapper'
 
 env = ENV["RACK_ENV"] || "development"
@@ -16,3 +17,14 @@ DataMapper.finalize
 DataMapper.auto_upgrade!
 
 # Datamapper will not create the database for us. We need to do it ourselves. In the terminal run psql to connect to your database server.
+get '/' do
+  @links = Link.all
+  erb :index
+end
+
+post '/links' do
+  url = params['url']
+  title = params['title']
+  Link.create(:url => url, :title => title)
+  redirect to '/'
+end
