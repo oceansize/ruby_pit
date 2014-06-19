@@ -5,7 +5,7 @@ ENV["RACK_ENV"] = 'test'
 # because the server needs to know what environment
 # it's running: test or development.
 # The environment determines what database to use:
-require_relative '../server'
+require './server'
 require 'database_cleaner'
 require 'capybara/rspec'
 
