@@ -6,6 +6,11 @@
   </head>
   <body>
     <header>
+      <section id='header-login'>
+        <% if current_user %>
+          Welcome, <%= current_user.email %>
+          <% end %>
+      </section>
       <img id="logo" src="/images/RubyPitWebLogo.png"/>
     </header>
     <section id="new-link">
