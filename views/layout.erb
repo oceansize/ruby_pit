@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ruby Pit</title>
+    <link rel="stylesheet" href="/css/pit_style.css">
+  </head>
+  <body>
+    <header>
+      <img id="logo" src="/images/RubyPitWebLogo.png"/>
+    </header>
+    <section id="new-link">
+      <form action="/links" method="post">
+        <input type="url" name="url" placeholder="Enter link address">
+        <input type="text" name="title" placeholder="Enter link name">
+        <input type="text" name="tags" placeholder="Enter tags (separated by a space)">
+        <input type="submit" value="Add Link">
+      </form>
+    </section>
+    <nav class="clearfix tag">
+        <ul class="list-centered">
+      <% all_tags.each do |tag| %>
+          <li><a href="tags/<%= tag %>"><%= tag %></a></li>
+      <% end %>
+        </ul>
+    </nav>
+    <section id="main">
+      <%= yield %>
+    </section>
+  </body>
+</html>

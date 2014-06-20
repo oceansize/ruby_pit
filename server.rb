@@ -10,6 +10,9 @@ DataMapper.setup(:default, "postgres://localhost/ruby_pit_#{env}")
 
 require './lib/link'
 require './lib/tag'
+require './lib/user'
+require './lib/helpers'
+set :public_folder, Proc.new { File.join(root, 'Static') }
 # This needs to be done after DataMapper is initialized, and this reference to our models lets DataMapper know what data schema we have in our project (because we include DataMapper::Resource in every model).
 
 # After declaring your models, you should finalise them check for consistency:
@@ -19,6 +22,7 @@ DataMapper.finalize
 DataMapper.auto_upgrade!
 
 # Datamapper will not create the database for us. We need to do it ourselves. In the terminal run psql to connect to your database server.
+
 get '/' do
   @links = Link.all
   erb :index
@@ -36,9 +40,21 @@ post '/links' do
   redirect to '/'
 end
 
+post '/users' do
+  User.create(:email => params[:email],
+              :password => params[:password])
+  redirect to '/'
+end
+
 get '/tags/:text' do
   tag = Tag.first(:text => params[:text])
   @links = tag ? tag.links : []
   erb :index
 end
 
+get '/users/new' do
+  # we need the quotes because otherwise
+  # ruby would divide the symbol :users by the
+  # variable new (which makes no sense)
+  erb :"users/new"
+end

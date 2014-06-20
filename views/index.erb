@@ -1,13 +1,5 @@
-<ul>
+<ul class="link-list">
   <% @links.each do |link| %>
     <li><a href="<%= link.url %>"><%= link.title %></a></li>
-    <% end %>
+  <% end %>
 </ul>
-<div id="new-link">
-  <form action="/links" method="post">
-    <input type="url" name="url" placeholder="Enter link address">
-    <input type="text" name="title" placeholder="Enter link name">
-    <input type="submit" value="Add Link">
-    <input type="text" name="tags">
-  </form>
-</div>
