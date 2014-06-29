@@ -7,9 +7,9 @@ class Link
 
   # This block describes what resources our model will have
   # Serial means auto-incremented for every record
-  property :id,     Serial
-  property :title,  String
-  property :url,    String
+  property :id    , Serial
+  property :title , String
+  property :url   , String
 
   has n, :tags, :through => Resource
 

@@ -1,24 +1,17 @@
 require 'sinatra'
 require 'data_mapper'
-
-env = ENV["RACK_ENV"] || "development"
-
-DataMapper.setup(:default, "postgres://localhost/ruby_pit_#{env}")
-
 require './lib/link'
 require './lib/tag'
 require './lib/user'
-require './lib/helpers'
-set :public_folder, Proc.new { File.join(root, 'Static') }
+require './app/helpers/helpers'
+require_relative './app/data_mapper_setup'
+require_relative './app/helpers/helpers'
+
+set :public_folder, Proc.new { File.join(root, 'public') }
+set :views, Proc.new { File.join(root, 'app','views') }
+
 enable :sessions
-set :session_secret, 'super secret'
-
-# After declaring your models, you should finalise them check for consistency:
-DataMapper.finalize
-
-# However, the database tables don't exist yet. Let's tell DataMapper to create them:
-DataMapper.auto_upgrade!
-
+set :session_secret, 'my unique encryption key!'
 
 get '/' do
   @links = Link.all
@@ -28,7 +21,8 @@ end
 # save user ID in the session after it's created:
 post '/users' do
   user = User.create(:email => params[:email],
-                     :password => params[:password])
+                     :password => params[:password],
+                     :password_confirmation => params[:password_confirmation])
   session[:user_id] = user.id
   redirect to '/'
 end
@@ -47,7 +41,8 @@ end
 
 post '/users' do
   User.create(:email => params[:email],
-              :password => params[:password])
+              :password => params[:password],
+              :password_confirmation => params[:password_confirmation])
   redirect to '/'
 end
 

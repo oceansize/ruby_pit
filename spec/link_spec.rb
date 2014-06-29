@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Link do
   context 'Demonstration of how DataMapper works' do
-    it "should be created and then retrieved from the db" do
+    it "expect to be created and then retrieved from the db" do
       # in the beginning the database is empty, so should have no links:
       expect(Link.count).to eq (0)
       # This creates the database, so it's stored on the disk:
