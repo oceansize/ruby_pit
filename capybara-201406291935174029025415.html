@@ -7,12 +7,9 @@
   <body>
     <header>
       <section id='header-login'>
-        <% if flash[:notice] %>
-          <div id="notice"><%= flash[:notice] %></div>
-        <% end %>
-        <% if current_user %>
-          Welcome, <%= current_user.email %>
-          <% end %>
+
+          <div id="notice">Sorry, your passwords don't match</div>
+
       </section>
       <img id="logo" src="/images/RubyPitLogo@x2.png"/>
     </header>
@@ -25,14 +22,23 @@
       </form>
     </section>
     <nav class="clearfix tag">
-      <ul class="list-centered">
-        <% all_tags.each do |tag| %>
-          <li><a href="tags/<%= tag %>"><%= tag %></a></li>
-        <% end %>
-      </ul>
+        <ul class="list-centered">
+
+        </ul>
     </nav>
     <section id="main">
-      <%= yield %>
+      <article class="signup-form">
+
+  <h1>Please register to use Ruby Bits</h1>
+
+  <form action="/users" method="POST">
+    <input name="email" type="text" placeholder="Enter email address" value="a@a.com">
+    <input name="password" type="password" placeholder="Please enter a password">
+    <input name="password_confirmation" type="password" placeholder="Please confirm your password">
+    <input type="submit" value="Sign Up">
+  </form>
+
+</article>
     </section>
   </body>
 </html>

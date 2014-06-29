@@ -26,6 +26,7 @@ header {
   text-align: center;
   background-color: #14162d;
   height: 20em;
+  color: #fff;
 }
 #logo {
   margin-top: 5em;
@@ -73,6 +74,20 @@ ul {
 #main{
   margin: 2em;
 }
+.signup-form {
+  width: 25%;
+  margin: 0 auto;
+  text-align: center;
+}
+/*-----------------------------
+FORMS
+-----------------------------*/
+.signup-form input{
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
 /*-----------------------------
 TYPOGRAPHY
 -----------------------------*/

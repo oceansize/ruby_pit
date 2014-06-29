@@ -1,8 +1,12 @@
-<h1>Please register to use Ruby Bits</h1>
+<article class="signup-form">
 
-<form action="/users" method="POST">
-  <input name="email" type="text">
-  <input name="password" type="password">
-  <input name="password_confirmation" type="password">
-  <input type="submit" value="Sign Up">
-</form>
+  <h1>Please register to use Ruby Bits</h1>
+
+  <form action="/users" method="POST">
+    <input name="email" type="text" placeholder="Enter email address" value="<%= @user.email %>">
+    <input name="password" type="password" placeholder="Please enter a password">
+    <input name="password_confirmation" type="password" placeholder="Please confirm your password">
+    <input type="submit" value="Sign Up">
+  </form>
+
+</article>
